@@ -1,3 +1,4 @@
+
 name: Build Farida APK
 
 on:
@@ -39,10 +40,13 @@ jobs:
           PROJECT_DIR=$(dirname "$SETTINGS_FILE")
           echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
 
-      - name: Show App Files
+      - name: Update App Files
         run: |
-          echo "=== APP SOURCE FILES ==="
-          find "$PROJECT_DIR/app/src/main" -maxdepth 5 -type f | sort
+          cp index.html "$PROJECT_DIR/app/src/main/assets/index.html"
+          cp manifest.webmanifest "$PROJECT_DIR/app/src/main/assets/manifest.webmanifest"
+          cp sw.js "$PROJECT_DIR/app/src/main/assets/sw.js"
+          cp farida.png "$PROJECT_DIR/app/src/main/assets/farida.png"
+          cp Code.gs "$PROJECT_DIR/app/src/main/assets/Code.gs"
 
       - name: Build APK
         run: |
