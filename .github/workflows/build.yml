@@ -1,4 +1,3 @@
-
 name: Build Farida APK
 
 on:
@@ -39,6 +38,11 @@ jobs:
           fi
           PROJECT_DIR=$(dirname "$SETTINGS_FILE")
           echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
+
+      - name: Show App Files
+        run: |
+          echo "=== APP SOURCE FILES ==="
+          find "$PROJECT_DIR/app/src/main" -maxdepth 5 -type f | sort
 
       - name: Build APK
         run: |
