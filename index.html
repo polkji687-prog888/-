@@ -192,7 +192,10 @@ button:disabled,input:disabled{opacity:.55}
         clearTimeout(timer);
         delete window[callbackName];
         script.onerror = null;
-        if (script.parentNode) script.parentNode.removeChild(script);
+        script.onload = null;
+        if (script.parentNode) {
+          script.parentNode.removeChild(script);
+        }
       }
 
       function fail(message) {
@@ -203,7 +206,7 @@ button:disabled,input:disabled{opacity:.55}
       }
 
       const timer = setTimeout(() => {
-        fail("الخدمة لم ترد خلال 60 ثانية. تحقق من اتصال الإنترنت وحاول مرة أخرى.");
+        fail("انتهت مهلة الاتصال. لم يصل رد من الخدمة خلال 60 ثانية.");
       }, 60000);
 
       window[callbackName] = (data) => {
@@ -222,8 +225,19 @@ button:disabled,input:disabled{opacity:.55}
         }
       };
 
+      // اختبار تحميل الخدمة وتنفيذ رد فريدة
+      script.onload = () => {
+        if (finished) return;
+
+        setTimeout(() => {
+          if (!finished) {
+            fail("تم تحميل الخدمة لكن لم يتم تنفيذ رد فريدة. قد تكون المشكلة في إعادة توجيه Google أو طريقة الاتصال داخل التطبيق.");
+          }
+        }, 1500);
+      };
+
       script.onerror = () => {
-        fail("تعذر تحميل رد الخدمة. قد يكون هناك منع للاتصال أو مشكلة في إعادة التوجيه.");
+        fail("تعذر تحميل الخدمة. تحقق من الإنترنت أو من الاتصال بخدمة Google.");
       };
 
       const separator = API_URL.includes("?") ? "&" : "?";
