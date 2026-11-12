@@ -11,14 +11,9 @@
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#0b1220;
-  color:#fff;
-  height:100dvh;
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
+  margin:0;font-family:Arial,sans-serif;
+  background:#0b1220;color:#fff;height:100dvh;
+  display:flex;flex-direction:column;overflow:hidden;
 }
 #splash{
   position:fixed;inset:0;z-index:10;
@@ -28,23 +23,20 @@ body{
   transition:opacity .5s;
 }
 #splash img{
-  width:145px;height:145px;
-  object-fit:cover;border-radius:50%;
-  border:3px solid #d4af37;
+  width:145px;height:145px;object-fit:cover;
+  border-radius:50%;border:3px solid #d4af37;
   box-shadow:0 0 35px #d4af3755;
 }
 #splash h1{color:#e6c45a;margin:20px 0 8px}
 #splash p{color:#b8c1d1;font-size:14px}
 header{
-  padding:12px 16px;
-  background:#111c2e;
+  padding:12px 16px;background:#111c2e;
   display:flex;align-items:center;gap:12px;
   border-bottom:1px solid #29364a;
 }
 .avatar{
-  width:48px;height:48px;
-  border-radius:50%;object-fit:cover;
-  border:2px solid #d4af37;
+  width:48px;height:48px;border-radius:50%;
+  object-fit:cover;border:2px solid #d4af37;
   background:#263449;
 }
 .header-info{flex:1}
@@ -52,65 +44,45 @@ header{
 .header-info p{font-size:12px;margin:0;color:#a7f3d0}
 .online{
   width:9px;height:9px;border-radius:50%;
-  background:#35d399;display:inline-block;
-  margin-left:5px;
+  background:#35d399;display:inline-block;margin-left:5px;
 }
 #chat{
-  flex:1;overflow-y:auto;
-  padding:16px;display:flex;
-  flex-direction:column;gap:13px;
+  flex:1;overflow-y:auto;padding:16px;
+  display:flex;flex-direction:column;gap:13px;
   scroll-behavior:smooth;
 }
 .message{
   max-width:88%;padding:12px 15px;
   border-radius:17px;line-height:1.8;
-  white-space:pre-wrap;overflow-wrap:anywhere;
-  font-size:15px;
+  white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;
 }
-.bot{
-  align-self:flex-start;background:#263449;
-  border-bottom-right-radius:4px;
-}
-.user{
-  align-self:flex-end;background:#927326;
-  border-bottom-left-radius:4px;
-}
-.welcome{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:5px;
-}
+.bot{align-self:flex-start;background:#263449;border-bottom-right-radius:4px}
+.user{align-self:flex-end;background:#927326;border-bottom-left-radius:4px}
+.welcome{display:flex;align-items:center;gap:10px;margin-bottom:5px}
 .welcome img{
   width:38px;height:38px;border-radius:50%;
   object-fit:cover;border:1px solid #d4af37;
 }
-#status{
-  min-height:23px;padding:3px 15px;
-  color:#e6c45a;font-size:12px;
-}
+#status{min-height:23px;padding:3px 15px;color:#e6c45a;font-size:12px}
 form{
   display:flex;gap:9px;padding:12px;
   padding-bottom:max(12px,env(safe-area-inset-bottom));
   background:#111c2e;border-top:1px solid #29364a;
 }
 input{
-  flex:1;min-width:0;
-  border:1px solid #46546a;
-  background:#1e293b;color:#fff;
-  border-radius:25px;padding:13px 16px;
-  font-size:15px;outline:none;
+  flex:1;min-width:0;border:1px solid #46546a;
+  background:#1e293b;color:#fff;border-radius:25px;
+  padding:13px 16px;font-size:15px;outline:none;
 }
 input:focus{border-color:#d4af37}
 button{
-  border:0;border-radius:50%;
-  width:48px;height:48px;
-  background:#d4af37;color:#101827;
-  font-size:21px;font-weight:bold;
+  border:0;border-radius:50%;width:48px;height:48px;
+  background:#d4af37;color:#101827;font-size:21px;font-weight:bold;
 }
 button:disabled,input:disabled{opacity:.55}
 .footer{
-  text-align:center;font-size:10px;
-  color:#778399;padding:4px 0 7px;
-  background:#111c2e;
+  text-align:center;font-size:10px;color:#778399;
+  padding:4px 0 7px;background:#111c2e;
 }
 </style>
 </head>
@@ -118,15 +90,13 @@ button:disabled,input:disabled{opacity:.55}
 <body>
 
 <div id="splash">
-  <img src="farida.png" alt="فريدة"
-       onerror="this.style.display='none'">
+  <img src="farida.png" alt="فريدة" onerror="this.style.display='none'">
   <h1>فريدة الذكية</h1>
   <p>مساعدتك الذكية في كل وقت 🌷</p>
 </div>
 
 <header>
-  <img class="avatar" src="farida.png" alt="فريدة"
-       onerror="this.style.display='none'">
+  <img class="avatar" src="farida.png" alt="فريدة" onerror="this.style.display='none'">
   <div class="header-info">
     <h1>فريدة الذكية</h1>
     <p><span class="online"></span>متاحة للمحادثة الآن</p>
@@ -136,8 +106,7 @@ button:disabled,input:disabled{opacity:.55}
 <main id="chat">
   <div class="message bot">
     <div class="welcome">
-      <img src="farida.png" alt=""
-           onerror="this.style.display='none'">
+      <img src="farida.png" alt="" onerror="this.style.display='none'">
       <strong>أهلًا بيك، أنا فريدة 🌷</strong>
     </div>
     أنا مساعدتك الذكية. اسألني عن أي حاجة، وأنا هحاول أساعدك بأفضل إجابة.
@@ -147,17 +116,14 @@ button:disabled,input:disabled{opacity:.55}
 <div id="status"></div>
 
 <form id="form">
-  <input id="message" type="text"
-    placeholder="اكتب رسالتك هنا..."
-    autocomplete="off" required>
+  <input id="message" type="text" placeholder="اكتب رسالتك هنا..." autocomplete="off" required>
   <button id="send" type="submit">➤</button>
 </form>
+
 <div class="footer">فريدة الذكية © 2026</div>
 
 <script>
 (() => {
-  const API_URL = "https://script.google.com/macros/s/AKfycbxqO_ZAhmeBWAd6c12-UyE1qNNT3_hdJ3aRap4RLjxsaoOMRIaB9MrZmxajv_JTHfTMoA/exec";
-
   const chat = document.getElementById("chat");
   const form = document.getElementById("form");
   const input = document.getElementById("message");
@@ -180,39 +146,30 @@ button:disabled,input:disabled{opacity:.55}
 
   function askFarida(message) {
     return new Promise((resolve, reject) => {
+      if (!window.FaridaAndroid ||
+          typeof window.FaridaAndroid.askFarida !== "function") {
+        reject(new Error("خدمة الاتصال داخل التطبيق غير متاحة."));
+        return;
+      }
+
       const callbackName =
         "faridaCallback_" + Date.now() + "_" +
         Math.floor(Math.random() * 1000000);
 
-      const script = document.createElement("script");
-      script.async = true;
       let finished = false;
 
-      function cleanup() {
-        clearTimeout(timer);
-        delete window[callbackName];
-        script.onerror = null;
-        script.onload = null;
-        if (script.parentNode) {
-          script.parentNode.removeChild(script);
-        }
-      }
-
-      function fail(message) {
+      const timer = setTimeout(() => {
         if (finished) return;
         finished = true;
-        cleanup();
-        reject(new Error(message));
-      }
-
-      const timer = setTimeout(() => {
-        fail("انتهت مهلة الاتصال. لم يصل رد من الخدمة خلال 60 ثانية.");
-      }, 60000);
+        delete window[callbackName];
+        reject(new Error("انتهت مهلة الاتصال بعد 75 ثانية."));
+      }, 75000);
 
       window[callbackName] = (data) => {
         if (finished) return;
         finished = true;
-        cleanup();
+        clearTimeout(timer);
+        delete window[callbackName];
 
         if (data && data.success && data.reply) {
           resolve(data.reply);
@@ -225,30 +182,14 @@ button:disabled,input:disabled{opacity:.55}
         }
       };
 
-      // اختبار تحميل الخدمة وتنفيذ رد فريدة
-      script.onload = () => {
-        if (finished) return;
-
-        setTimeout(() => {
-          if (!finished) {
-            fail("تم تحميل الخدمة لكن لم يتم تنفيذ رد فريدة. قد تكون المشكلة في إعادة توجيه Google أو طريقة الاتصال داخل التطبيق.");
-          }
-        }, 1500);
-      };
-
-      script.onerror = () => {
-        fail("تعذر تحميل الخدمة. تحقق من الإنترنت أو من الاتصال بخدمة Google.");
-      };
-
-      const separator = API_URL.includes("?") ? "&" : "?";
-
-      script.src =
-        API_URL + separator +
-        "message=" + encodeURIComponent(message) +
-        "&callback=" + encodeURIComponent(callbackName) +
-        "&_=" + Date.now();
-
-      document.body.appendChild(script);
+      try {
+        window.FaridaAndroid.askFarida(message, callbackName);
+      } catch (error) {
+        finished = true;
+        clearTimeout(timer);
+        delete window[callbackName];
+        reject(error);
+      }
     });
   }
 
