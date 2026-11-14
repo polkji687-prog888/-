@@ -29,21 +29,22 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Extract Farida Nova project
+      - name: Check project files
         run: |
-          unzip -q "Farida_Nova_Complete_Project.zip" -d project
-          test -f project/settings.gradle
-          test -f project/app/src/main/java/com/farida/nova/MainActivity.java
+          test -f settings.gradle
+          test -f build.gradle
+          test -f gradle.properties
+          test -f app/build.gradle
+          test -f app/src/main/AndroidManifest.xml
+          test -f app/src/main/java/com/farida/nova/MainActivity.java
+          test -f app/src/main/assets/index.html
 
       - name: Build APK
-        run: |
-          cd project
-          gradle assembleDebug
+        run: gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Farida-Nova-APK
-          path: project/app/build/outputs/apk/debug/*.apk
+          path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
-
