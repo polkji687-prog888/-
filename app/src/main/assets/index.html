@@ -1,115 +1,222 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>فريدة نوفا</title>
+
 <style>
-*{box-sizing:border-box}
-{margin:0;background:#10131c;color:#fff;font-family:Arial,sans-serif}
-{padding:20px;text-align:center;background:#191e2b;border-bottom:1px solid #34394a}
-{margin:0;color:#d8c18a}
-{color:#aaa;font-size:13px}
-#chat{height:calc(100vh - 155px);overflow-y:auto;padding:15px}
-{padding:12px 15px;margin:10px 0;border-radius:15px;max-width:88%;line-height:1.7;white-space:pre-wrap}
-{background:#35445d;margin-right:auto}
-{background:#252c3b;margin-left:auto}
-#typing{color:#aaa;padding:0 18px}
-#typing{color:#aaa;padding:0 18px}{flex;gap:8px;padding:12px;background:#191e2b}
-{flex:1;min-width:0;padding:13px;border:1px solid #454b5c;border-radius:12px;background:#252c3b;color:white;font-size:16px}
-{border:0;border-radius:12px;background:#c4a76a;color:#171717;padding:0 18px;font-weight:bold}
+* {
+    box-sizing: border-box;
+}
 
+body {
+    margin: 0;
+    background: #10131c;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
 
+header {
+    padding: 20px;
+    text-align: center;
+    background: #191e2b;
+    border-bottom: 1px solid #34394a;
+}
 
+h2 {
+    margin: 0;
+    color: #d8c18a;
+}
 
-<h2>✦ فريدة نوفا</h2>
-<p>مساعدتك الذكية، بهدوء ووضوح</p>
+header p {
+    color: #aaa;
+    font-size: 13px;
+}
+
+#chat {
+    height: calc(100vh - 155px);
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.msg {
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 15px;
+    max-width: 88%;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.user {
+    background: #35445d;
+    margin-right: auto;
+}
+
+.bot {
+    background: #252c3b;
+    margin-left: auto;
+}
+
+#typing {
+    color: #aaa;
+    padding: 0 18px;
+    min-height: 20px;
+}
+
+footer {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    background: #191e2b;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 13px;
+    border: 1px solid #454b5c;
+    border-radius: 12px;
+    background: #252c3b;
+    color: white;
+    font-size: 16px;
+}
+
+button {
+    border: 0;
+    border-radius: 12px;
+    background: #c4a76a;
+    color: #171717;
+    padding: 0 18px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>✦ فريدة نوفا</h2>
+    <p>مساعدتك الذكية، بهدوء ووضوح</p>
 </header>
 
 <div id="chat">
-<div class="msg bot">أهلًا، أنا فريدة نوفا ✦
-اكتب رسالتك وهنبدأ نتكلم.</div>
+    <div class="msg bot">
+        أهلًا، أنا فريدة نوفا ✦
+        اكتب رسالتك وهنبدأ نتكلم.
+    </div>
 </div>
+
 <div id="typing"></div>
 
 <footer>
-<input id="message" placeholder="اكتب رسالتك هنا..." autocomplete="off">
-<button onclick="sendMessage()">إرسال</button>
+    <input id="message" placeholder="اكتب رسالتك هنا..." autocomplete="off">
+    <button onclick="sendMessage()">إرسال</button>
 </footer>
 
 <script>
-const chat=document.getElementById("chat");
-const input=document.getElementById("message");
-const typing=document.getElementById("typing");
+const chat = document.getElementById("chat");
+const input = document.getElementById("message");
+const typing = document.getElementById("typing");
 
-let history=[];
-let callbackCounter=0;
+let history = [];
+let callbackCounter = 0;
 
-function addMessage(text,type){
-const div=document.createElement("div");
-div.className="msg "+type;
-div.textContent=text;
-chat.appendChild(div);
-chat.scrollTop=chat.scrollHeight;
+function addMessage(text, type) {
+    const div = document.createElement("div");
+    div.className = "msg " + type;
+    div.textContent = text;
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
 }
 
-function sendMessage(){
-const message=input.value.trim();
-if(!message)return;
+function sendMessage() {
+    const message = input.value.trim();
 
-addMessage(message,"user");
-history.push({role:"user",text:message});
-input.value="";
-typing.textContent="فريدة بتفكر...";
+    if (!message) return;
 
-if(!window.FaridaAndroid){
-typing.textContent="تعذر الوصول لخدمة أندرويد. أعد بناء التطبيق.";
-return;
+    addMessage(message, "user");
+    history.push({role: "user", text: message});
+
+    input.value = "";
+    typing.textContent = "فريدة بتفكر...";
+
+    if (!window.FaridaAndroid) {
+        typing.textContent = "تعذر الوصول لخدمة أندرويد. أعد بناء التطبيق.";
+        return;
+    }
+
+    const callbackName = "faridaCallback" + (++callbackCounter);
+
+    window[callbackName] = function(raw) {
+        typing.textContent = "";
+
+        let result = raw;
+
+        try {
+            if (typeof raw === "string") {
+                result = JSON.parse(raw);
+            }
+        } catch (e) {}
+
+        const reply = result && (result.reply || result.message)
+            ? (result.reply || result.message)
+            : "لم أتمكن من الحصول على رد من الخدمة.";
+
+        addMessage(reply, "bot");
+
+        history.push({
+            role: "assistant",
+            text: reply
+        });
+
+        try {
+            localStorage.setItem(
+                "farida_history",
+                JSON.stringify(history)
+            );
+        } catch (e) {}
+
+        delete window[callbackName];
+    };
+
+    try {
+        FaridaAndroid.askFarida(message, callbackName);
+    } catch (e) {
+        typing.textContent = "حدث خطأ في الاتصال. حاول مرة أخرى.";
+        delete window[callbackName];
+    }
 }
 
-const callbackName="faridaCallback"+(++callbackCounter);
-
-window[callbackName]=function(raw){
-typing.textContent="";
-let result=raw;
-
-try{
-if(typeof raw==="string")result=JSON.parse(raw);
-}catch(e){}
-
-const reply=result && (result.reply || result.message)
-? result.reply || result.message
-: "لم أتمكن من الحصول على رد من الخدمة.";
-
-addMessage(reply,"bot");
-history.push({role:"assistant",text:reply});
-try{
-localStorage.setItem("farida_history",JSON.stringify(history));
-}catch(e){}
-delete window[callbackName];
-};
-
-try{
-FaridaAndroid.askFarida(message,callbackName);
-}catch(e){
-typing.textContent="حدث خطأ في الاتصال. حاول مرة أخرى.";
-delete window[callbackName];
-}
-}
-
-input.addEventListener("keydown",function(e){
-if(e.key==="Enter")sendMessage();
+input.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
 });
 
-try{
-const saved=JSON.parse(localStorage.getItem("farida_history")||"[]");
-if(Array.isArray(saved)){
-history=saved;
-saved.forEach(item=>{
-if(item.text)addMessage(item.text,item.role==="user"?"user":"bot");
-});
-}
-}catch(e){}
+try {
+    const saved = JSON.parse(
+        localStorage.getItem("farida_history") || "[]"
+    );
+
+    if (Array.isArray(saved)) {
+        history = saved;
+
+        saved.forEach(item => {
+            if (item.text) {
+                addMessage(
+                    item.text,
+                    item.role === "user" ? "user" : "bot"
+                );
+            }
+        });
+    }
+} catch (e) {}
 </script>
+
 </body>
-  </html>
+</html>
+
