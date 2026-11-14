@@ -1,8 +1,6 @@
 name: Farida 2.0 Debug APK
 
 on:
-  push:
-    branches: [farida-2.0]
   workflow_dispatch:
 
 jobs:
@@ -18,16 +16,20 @@ jobs:
           java-version: '17'
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: 12266719
+          accept-android-sdk-licenses: true
+          log-accepted-android-sdk-licenses: true
       - name: Make Gradle wrapper executable
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
       - name: Assemble debug APK
         run: ./gradlew assembleDebug
       - name: Run debug unit tests
         run: ./gradlew testDebugUnitTest
       - name: Run lint
-        run: ./gradlew lintDebug
+        run: ./gradlew lint
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
           name: farida-2.0-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: '**/build/outputs/apk/**/*.apk'
