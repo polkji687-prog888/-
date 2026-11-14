@@ -1,0 +1,49 @@
+name: Build Farida Nova APK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Extract Farida Nova project
+        run: |
+          unzip -q "Farida_Nova_Complete_Project.zip" -d project
+          test -f project/settings.gradle
+          test -f project/app/src/main/java/com/farida/nova/MainActivity.java
+
+      - name: Build APK
+        run: |
+          cd project
+          gradle assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Farida-Nova-APK
+          path: project/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
