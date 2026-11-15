@@ -1,4 +1,5 @@
 name: Build Farida Smart APK
+# Builds the native Android shell and packages the latest Farida web interface.
 
 on:
   push:
