@@ -1,424 +1,75 @@
-
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#111827">
-  <meta name="description" content="فريدة الذكية، مساعدتك العربية">
-  <link rel="manifest" href="manifest.webmanifest">
-  <title>فريدة الذكية</title>
-
-  <style>
-    :root{
-      color-scheme:dark;
-      --bg:#0b1020;
-      --panel:#141c30;
-      --panel2:#1c2740;
-      --line:#2b3855;
-      --text:#f4f6fb;
-      --muted:#aab5ca;
-      --gold:#e6bd70;
-      --accent:#8b9cff
-    }
-
-    *{box-sizing:border-box}
-
-    body{
-      margin:0;
-      background:radial-gradient(ellipse at top,#1a2540 0,#0b1020 55%);
-      color:var(--text);
-      font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;
-      min-height:100vh
-    }
-
-    .app{
-      max-width:900px;
-      margin:auto;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      padding:16px
-    }
-
-    header{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:10px 4px 16px;
-      border-bottom:1px solid var(--line)
-    }
-
-    .logo{
-      width:46px;
-      height:46px;
-      border-radius:15px;
-      background:linear-gradient(145deg,#f1d79c,#a77a35);
-      display:grid;
-      place-items:center;
-      color:#182033;
-      font-size:24px;
-      font-weight:900;
-      box-shadow:0 8px 28px #0005
-    }
-
-    h1{font-size:19px;margin:0}
-    header p{margin:3px 0 0;color:var(--muted);font-size:12px}
-    .spacer{flex:1}
-
-    .smallbtn,.iconbtn{
-      border:1px solid var(--line);
-      background:var(--panel);
-      color:var(--text);
-      border-radius:12px;
-      padding:9px 12px;
-      cursor:pointer
-    }
-
-    #chat{
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      padding:20px 0;
-      overflow:auto
-    }
-
-    .welcome{
-      text-align:center;
-      margin:auto 0;
-      color:var(--muted);
-      padding:18px 12px
-    }
-
-    .welcome .star{font-size:42px;color:var(--gold)}
-    .welcome h2{color:var(--text);margin:8px}
-
-    .hero-art{
-      display:block;
-      width:min(100%,330px);
-      max-height:360px;
-      object-fit:cover;
-      object-position:center 25%;
-      margin:0 auto 16px;
-      border:1px solid var(--line);
-      border-radius:22px;
-      box-shadow:0 14px 36px #0007
-    }
-
-    .msg{
-      max-width:86%;
-      padding:13px 15px;
-      border-radius:17px;
-      line-height:1.7;
-      white-space:pre-wrap;
-      overflow-wrap:anywhere
-    }
-
-    .user{
-      align-self:flex-start;
-      background:#29375b;
-      border-bottom-right-radius:5px
-    }
-
-    .bot{
-      align-self:flex-end;
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-bottom-left-radius:5px
-    }
-
-    .typing{
-      align-self:flex-end;
-      color:var(--muted);
-      font-size:13px;
-      padding:8px
-    }
-
-    .composer{
-      background:#111a2c;
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:10px;
-      display:flex;
-      gap:8px;
-      align-items:flex-end;
-      position:sticky;
-      bottom:8px;
-      box-shadow:0 12px 40px #0006
-    }
-
-    textarea{
-      flex:1;
-      resize:none;
-      max-height:140px;
-      min-height:44px;
-      border:0;
-      outline:0;
-      background:transparent;
-      color:var(--text);
-      font:inherit;
-      padding:10px
-    }
-
-    .send{
-      background:linear-gradient(135deg,#e8ca8c,#b88946);
-      color:#171c2a;
-      border:0;
-      border-radius:14px;
-      padding:12px 17px;
-      font-weight:800;
-      cursor:pointer
-    }
-
-    .iconbtn{
-      width:44px;
-      height:44px;
-      padding:0;
-      font-size:18px
-    }
-
-    .hint{
-      text-align:center;
-      color:var(--muted);
-      font-size:11px;
-      padding:9px
-    }
-
-    .status{
-      font-size:11px;
-      color:var(--muted);
-      padding:7px 3px
-    }
-
-    .error{color:#ffaaa8}
-
-    @media(max-width:520px){
-      .app{padding:10px}
-      .msg{max-width:94%}
-      header{padding-top:8px}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101020">
+<title>فريدة الذكية</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1020;--panel:#171b31;--panel2:#202642;--line:#353653;--gold:#e8c783;--purple:#a58be8;--text:#f8f5ff;--muted:#b5b0c8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#292044 0,#101020 55%,#090c17 100%);color:var(--text);font-family:system-ui,Tahoma,Arial,sans-serif;min-height:100vh}
+.app{max-width:760px;margin:auto;min-height:100dvh;display:flex;flex-direction:column;padding:12px}
+header{display:flex;align-items:center;gap:12px;padding:10px 4px 14px;border-bottom:1px solid var(--line)}
+.avatar{width:54px;height:54px;border-radius:18px;object-fit:cover;object-position:center 20%;border:2px solid var(--gold);box-shadow:0 0 20px #a58be855}
+h1{font-size:19px;margin:0}header p{font-size:12px;color:var(--muted);margin:3px 0 0}.spacer{flex:1}
+button{font:inherit;cursor:pointer}.small{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:9px 11px}
+#chat{flex:1;display:flex;flex-direction:column;gap:12px;padding:16px 0;overflow:auto}
+.welcome{text-align:center;margin:auto 0;padding:18px 10px;color:var(--muted)}
+.hero{width:min(76vw,270px);height:290px;object-fit:cover;object-position:center 18%;border-radius:26px;border:1px solid #8069ae;box-shadow:0 16px 45px #0008}
+.welcome h2{color:var(--gold);margin:12px 0 6px}.welcome p{margin:4px 0 14px}
+.actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.pill{background:#28223d;border:1px solid #594c78;color:#eee4ff;border-radius:22px;padding:9px 14px}
+.msg{max-width:88%;padding:12px 15px;border-radius:18px;line-height:1.75;white-space:pre-wrap;overflow-wrap:anywhere}
+.user{align-self:flex-start;background:#303b60;border-bottom-right-radius:5px}.bot{align-self:flex-end;background:var(--panel);border:1px solid var(--line);border-bottom-left-radius:5px}
+.status{font-size:11px;color:var(--muted);padding:6px 3px}.error{color:#ffaaa8}
+.composer{display:flex;align-items:flex-end;gap:8px;background:#171b31;border:1px solid var(--line);border-radius:20px;padding:9px;position:sticky;bottom:6px;box-shadow:0 12px 36px #0007}
+textarea{flex:1;min-width:0;resize:none;max-height:130px;min-height:44px;border:0;outline:0;background:transparent;color:var(--text);font:inherit;padding:10px}
+.send{border:0;border-radius:14px;padding:12px 16px;font-weight:800;background:linear-gradient(135deg,#f0d99f,#bd9455);color:#191526}
+.icon{width:44px;height:44px;border-radius:14px;border:1px solid var(--line);background:var(--panel2);color:white;font-size:18px}
+.hint{text-align:center;color:var(--muted);font-size:11px;padding:9px}
+#photoView{display:none;position:fixed;inset:0;background:#080914ed;z-index:5;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+#photoView img{width:min(88vw,390px);max-height:75vh;object-fit:contain;border-radius:24px;border:1px solid var(--gold)}
+#photoView button{margin-top:16px}
+@media(max-width:520px){.app{padding:9px}.msg{max-width:95%}}
+</style>
 </head>
-
 <body>
 <div class="app">
-
-  <header>
-    <div class="logo">ف</div>
-    <div>
-      <h1>فريدة الذكية</h1>
-      <p>مساعدتك الذكية باللغة العربية</p>
-    </div>
-    <div class="spacer"></div>
-    <button class="smallbtn" id="newChat" title="محادثة جديدة">＋ جديد</button>
-  </header>
-
-  <main id="chat" aria-live="polite">
-    <section class="welcome" id="welcome">
-      <img class="hero-art" src="farida.png" alt="صورة فريدة، المساعدة الذكية">
-      <div class="star">✦</div>
-      <h2>أهلًا، أنا فريدة</h2>
-      <div>اكتب رسالتك وهنبدأ نتكلم.</div>
-    </section>
-  </main>
-
-  <div class="status" id="status">جاهزة للمحادثة</div>
-
-  <form class="composer" id="form">
-    <button type="button" class="iconbtn" id="voice" title="إملاء صوتي">🎙️</button>
-    <textarea id="message" rows="1" placeholder="اكتب رسالتك هنا..." autocomplete="off"></textarea>
-    <button class="send" id="send" type="submit">إرسال</button>
-  </form>
-
-  <div class="hint">
-    يمكنك استخدام زر الميكروفون للإملاء الصوتي. يلزم اتصال بالإنترنت للردود الذكية.
-  </div>
-
+<header>
+<img class="avatar" src="farida.png" alt="فريدة">
+<div><h1>فريدة الذكية 💜</h1><p>موجودة معاكي... وبمزاج مش دايمًا هادي 😏</p></div>
+<div class="spacer"></div><button class="small" id="newChat">＋ جديد</button>
+</header>
+<main id="chat" aria-live="polite">
+<section class="welcome" id="welcome">
+<img class="hero" src="farida.png" alt="الصورة الأساسية الثابتة لفريدة">
+<h2>أنا فريدة 💜</h2><p>اتأخرت عليا ليه؟ كنت مستنياك... مش أوي يعني 😂</p>
+<div class="actions"><button class="pill" id="showPhoto">عاوز تشوفيني؟ 📸</button><button class="pill" id="hello">قولي حاجة يا فريدة 😏</button></div>
+</section>
+</main>
+<div class="status" id="status">جاهزة للكلام</div>
+<form class="composer" id="form">
+<button type="button" class="icon" id="voice" title="إملاء صوتي">🎙️</button>
+<textarea id="message" rows="1" placeholder="اكتب لفريدة..." autocomplete="off"></textarea>
+<button class="send" id="send" type="submit">إرسال</button>
+</form>
+<div class="hint">فريدة بتتكلم معاك باللهجة المصرية. الردود الذكية تحتاج اتصالًا بالإنترنت.</div>
 </div>
-
+<div id="photoView" role="dialog" aria-label="صورة فريدة"><img src="farida.png" alt="فريدة بملامحها الأساسية الثابتة"><button class="small" id="closePhoto">إغلاق</button></div>
 <script>
 (() => {
-
-  const chat = document.getElementById("chat");
-  const form = document.getElementById("form");
-  const input = document.getElementById("message");
-  const status = document.getElementById("status");
-  const sendButton = document.getElementById("send");
-
-  let history = [];
-
-  try {
-    history = JSON.parse(localStorage.getItem("farida_history") || "[]");
-  } catch {
-    history = [];
-  }
-
-  function setStatus(text, bad=false) {
-    status.textContent = text;
-    status.className = "status" + (bad ? " error" : "");
-  }
-
-  function addMessage(text, who, save=true) {
-    document.getElementById("welcome")?.remove();
-
-    const wrap = document.createElement("div");
-    wrap.className = "msg " + (who === "user" ? "user" : "bot");
-    wrap.textContent = text;
-
-    chat.appendChild(wrap);
-    chat.scrollTop = chat.scrollHeight;
-
-    if (save) {
-      history.push({text, who});
-      history = history.slice(-80);
-      localStorage.setItem("farida_history", JSON.stringify(history));
-    }
-  }
-
-  history.forEach(m => addMessage(m.text, m.who, false));
-
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
-
-    const text = input.value.trim();
-    if (!text) return;
-
-    if (
-      !window.FaridaAndroid ||
-      typeof window.FaridaAndroid.askFarida !== "function"
-    ) {
-      setStatus("تعذر الوصول إلى خدمة أندرويد. أعد بناء التطبيق.", true);
-      return;
-    }
-
-    addMessage(text, "user");
-
-    input.value = "";
-    input.style.height = "44px";
-    sendButton.disabled = true;
-    setStatus("فريدة بتفكر...");
-
-    const typing = document.createElement("div");
-    typing.className = "typing";
-    typing.textContent = "فريدة تكتب...";
-    chat.appendChild(typing);
-
-    const callbackName = "faridaReply_" + Date.now();
-
-    let finished = false;
-
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      typing.remove();
-      sendButton.disabled = false;
-      delete window[callbackName];
-    };
-
-    window[callbackName] = data => {
-      finish();
-
-      if (!data || data.success !== true) {
-        addMessage(
-          "حصلت مشكلة: " +
-          (data?.reply || "الخدمة لم ترجع ردًا مفهومًا."),
-          "bot"
-        );
-
-        setStatus("تحقق من الاتصال.", true);
-        return;
-      }
-
-      addMessage(data.reply || "لم يصل رد نصي.", "bot");
-      setStatus("متصلة وجاهزة");
-    };
-
-    try {
-      window.FaridaAndroid.askFarida(text, callbackName);
-
-    } catch (err) {
-      finish();
-
-      addMessage(
-        "حصلت مشكلة في الاتصال: " + err.message,
-        "bot"
-      );
-
-      setStatus("تعذر الاتصال.", true);
-    }
-  });
-
-  input.addEventListener("input", () => {
-    input.style.height = "44px";
-    input.style.height = Math.min(input.scrollHeight, 140) + "px";
-  });
-
-  input.addEventListener("keydown", e => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      form.requestSubmit();
-    }
-  });
-
-  document.getElementById("newChat").onclick = () => {
-    if (!confirm("تبدأ محادثة جديدة؟ سيتم مسح سجل المحادثة من هذا الجهاز.")) {
-      return;
-    }
-
-    history = [];
-    localStorage.removeItem("farida_history");
-
-    chat.innerHTML = `
-      <section class="welcome" id="welcome">
-        <img class="hero-art" src="farida.png" alt="صورة فريدة، المساعدة الذكية">
-        <div class="star">✦</div>
-        <h2>أهلًا، أنا فريدة</h2>
-        <div>اكتب رسالتك وهنبدأ نتكلم.</div>
-      </section>
-    `;
-
-    setStatus("بدأت محادثة جديدة");
-  };
-
-  const voice = document.getElementById("voice");
-
-  voice.onclick = () => {
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!SR) {
-      setStatus("الإملاء الصوتي غير مدعوم في هذا المتصفح.", true);
-      return;
-    }
-
-    const rec = new SR();
-    rec.lang = "ar-EG";
-    rec.interimResults = false;
-
-    rec.onresult = e => {
-      input.value += (input.value ? " " : "") +
-        e.results[0][0].transcript;
-
-      input.dispatchEvent(new Event("input"));
-    };
-
-    rec.onerror = () => {
-      setStatus("لم أستطع التقاط الصوت. جرّب مرة أخرى.", true);
-    };
-
-    rec.start();
-    setStatus("اسمعك... اتكلم الآن");
-  };
-
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("./sw.js").catch(() => {});
-    });
-  }
-
+const chat=document.getElementById("chat"),form=document.getElementById("form"),input=document.getElementById("message"),status=document.getElementById("status"),send=document.getElementById("send");
+let history=[];try{history=JSON.parse(localStorage.getItem("farida_history")||"[]")}catch{history=[]}
+function setStatus(t,bad=false){status.textContent=t;status.className="status"+(bad?" error":"")}
+function addMessage(text,who,save=true){document.getElementById("welcome")?.remove();const d=document.createElement("div");d.className="msg "+(who==="user"?"user":"bot");d.textContent=text;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;if(save){history.push({text,who});history=history.slice(-80);try{localStorage.setItem("farida_history",JSON.stringify(history))}catch{}}}
+history.forEach(m=>{if(m.text)addMessage(m.text,m.who,false)});
+document.getElementById("showPhoto").onclick=()=>document.getElementById("photoView").style.display="flex";
+document.getElementById("closePhoto").onclick=()=>document.getElementById("photoView").style.display="none";
+document.getElementById("hello").onclick=()=>{input.value="قولي حاجة يا فريدة";form.requestSubmit()};
+document.getElementById("newChat").onclick=()=>{if(!confirm("نبدأ صفحة جديدة؟"))return;history=[];localStorage.removeItem("farida_history");chat.innerHTML='<section class="welcome" id="welcome"><img class="hero" src="farida.png" alt="فريدة"><h2>رجعتلك تاني 💜</h2><p>يلا، احكيلي بقى.</p><div class="actions"><button class="pill" id="showPhoto">عاوز تشوفيني؟ 📸</button></div></section>';document.getElementById("showPhoto").onclick=()=>document.getElementById("photoView").style.display="flex";setStatus("محادثة جديدة")};
+form.addEventListener("submit",e=>{e.preventDefault();const text=input.value.trim();if(!text)return;if(!window.FaridaAndroid||typeof FaridaAndroid.askFarida!=="function"){setStatus("خدمة أندرويد مش متصلة. راجع بناء التطبيق.",true);return}addMessage(text,"user");input.value="";input.style.height="44px";send.disabled=true;setStatus("فريدة بتفكر...");const typing=document.createElement("div");typing.className="msg bot";typing.textContent="ثواني، بفكر في رد يليق بيك 😏";chat.appendChild(typing);const callback="faridaReply_"+Date.now();let done=false;const finish=()=>{if(done)return;done=true;typing.remove();send.disabled=false;delete window[callback]};window[callback]=data=>{finish();if(!data||data.success!==true){addMessage("فيه مشكلة حصلت: "+(data?.reply||"الخدمة مردتش بشكل مفهوم."),"bot");setStatus("تحقق من الاتصال.",true);return}addMessage(data.reply||"لساني وقف لحظة، جرب تاني 😂","bot");setStatus("فريدة معاك")};try{FaridaAndroid.askFarida(text,callback)}catch(err){finish();addMessage("حصل خطأ: "+err.message,"bot");setStatus("تعذر الاتصال.",true)}});
+input.addEventListener("input",()=>{input.style.height="44px";input.style.height=Math.min(input.scrollHeight,130)+"px"});
+input.addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();form.requestSubmit()}});
+document.getElementById("voice").onclick=()=>{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){setStatus("الإملاء الصوتي غير مدعوم هنا.",true);return}const rec=new SR();rec.lang="ar-EG";rec.onresult=e=>{input.value+=(input.value?" ":"")+e.results[0][0].transcript;input.dispatchEvent(new Event("input"))};rec.onerror=()=>setStatus("الصوت مش واضح، جرب تاني.",true);rec.start();setStatus("سامعاك... اتكلم")};
 })();
 </script>
-
-</body>
-</html>
-
+</body></html>
