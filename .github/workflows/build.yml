@@ -1,10 +1,10 @@
-
-name: Build Farida APK
+name: Build Farida Smart APK
 
 on:
   push:
     branches:
       - main
+      - build/farida-smart
   workflow_dispatch:
 
 permissions:
@@ -13,52 +13,45 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Get project
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Java
+      - name: Set up Java
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Gradle
+      - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
 
-      - name: Extract Project
+      - name: Prepare Android assets
         run: |
-          unzip -q "Farida_APK_Builder_New.zip" -d project
+          mkdir -p app/src/main/assets
+          cp index.html app/src/main/assets/index.html
+          cp farida.png app/src/main/assets/farida.png
+          cp manifest.webmanifest app/src/main/assets/manifest.webmanifest
+          cp sw.js app/src/main/assets/sw.js
+          cp Code.gs app/src/main/assets/Code.gs
 
-          SETTINGS_FILE=$(find project -type f \( -name settings.gradle -o -name settings.gradle.kts \) -print -quit)
-
-          if [ -z "$SETTINGS_FILE" ]; then
-            echo "ERROR: settings.gradle not found"
-            exit 1
-          fi
-
-          PROJECT_DIR=$(dirname "$SETTINGS_FILE")
-          echo "PROJECT_DIR=$PROJECT_DIR" >> "$GITHUB_ENV"
-
-      - name: Update App Files
+      - name: Verify Android project
         run: |
-          cp index.html "$PROJECT_DIR/app/src/main/assets/index.html"
-          cp manifest.webmanifest "$PROJECT_DIR/app/src/main/assets/manifest.webmanifest"
-          cp sw.js "$PROJECT_DIR/app/src/main/assets/sw.js"
-          cp farida.png "$PROJECT_DIR/app/src/main/assets/farida.png"
-          cp Code.gs "$PROJECT_DIR/app/src/main/assets/Code.gs"
+          test -f settings.gradle
+          test -f app/build.gradle
+          test -f app/src/main/AndroidManifest.xml
+          test -f app/src/main/java/com/farida/nova/MainActivity.java
+          test -f app/src/main/assets/index.html
+          test -f app/src/main/assets/farida.png
 
-      - name: Build APK
-        run: |
-          cd "$PROJECT_DIR"
-          gradle assembleDebug
+      - name: Build debug APK
+        run: gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Farida-APK
-          path: ${{ env.PROJECT_DIR }}/app/build/outputs/apk/debug/*.apk
+          name: Farida-Smart-APK
+          path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
